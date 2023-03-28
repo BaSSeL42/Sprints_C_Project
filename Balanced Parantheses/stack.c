@@ -62,23 +62,93 @@ int main(void)
 {
     
     createEmptyStack(&myStack);
-    uint8_t* myStr = "  {(2+3)/(<3+3>*(15-10))}";
+    // uint8_t* myStr = "  {(2+3)/(<3+3>*(15-10))}";
     int8_t ret;
+    uint8_t myVal, top;
 
-    ret = isBalancedParantheses(myStr);
+    // ret = isBalancedParantheses(myStr);
 
-    if(ret == 0)
+    // if(ret == 0)
+    // {
+    //     printf("paranthesis are balanced\n");
+    // }
+    // else if (ret == -1)
+    // {
+    //     printf("paranthesis are not balanced\n");
+    // }
+    // else if (ret == -2)
+    // {
+    //     printf("Wrong expression \n");
+    // }
+
+    push(&myStack, 5);
+    push(&myStack, 6);
+    push(&myStack, 7);
+    push(&myStack, 11);
+    push(&myStack, 13);
+    printf("-------------------ALL STACK-------------------------------\n");
+    printStack(&myStack);
+    printf("-------------------POP-------------------------------\n");
+    pop(&myStack, &myVal);
+    printf("%d\n", myVal);
+    printf("-------------------Get TOP-------------------------------\n");
+    getStackTop(&myStack, &top);
+    printf("%d\n", top);
+    printf("-------------------ALL STACK-------------------------------\n");
+    printStack(&myStack);
+    printf("--------------------------------------------------\n");
+    push(&myStack, 8);
+    push(&myStack, 10);
+    push(&myStack, 55);
+    push(&myStack, 99);
+    push(&myStack, 54);
+    push(&myStack, 52);
+    push(&myStack, 77);
+    printf("--------------------TOP------------------------------\n");
+    getStackTop(&myStack, &top);
+    printf("%d\n", top);
+
+    printf("---------------------ALL STACK-----------------------------\n");
+    printStack(&myStack);
+    printf("------------------------POP--------------------------\n");
+    pop(&myStack, &myVal);
+    printf("%d\n", myVal);
+    pop(&myStack, &myVal);
+    printf("%d\n", myVal);
+    pop(&myStack, &myVal);
+    printf("%d\n", myVal);
+    pop(&myStack, &myVal);
+    printf("%d\n", myVal);
+    printf("-----------------------TOP---------------------------\n");
+    getStackTop(&myStack, &top);
+    printf("%d\n", top);
+    printf("------------------------ALL STACK--------------------------\n");
+    printStack(&myStack);
+    printf("-------------------------POP-------------------------\n");
+    pop(&myStack, &myVal);
+    printf("%d\n", myVal);
+    pop(&myStack, &myVal);
+    printf("%d\n", myVal);
+    pop(&myStack, &myVal);
+    printf("%d\n", myVal);
+    pop(&myStack, &myVal);
+    printf("%d\n", myVal);
+    pop(&myStack, &myVal);
+    printf("%d\n", myVal);
+    pop(&myStack, &myVal);
+    printf("%d\n", myVal);
+    pop(&myStack, &myVal);
+    printf("%d\n", myVal);
+    printf("------------------------TOP--------------------------\n");
+    ret = getStackTop(&myStack, &top);
+    if (ret == C_NOK )
     {
-        printf("paranthesis are balanced\n");
+        printf("Stack is Empty\n");
     }
-    else if (ret == -1)
-    {
-        printf("paranthesis are not balanced\n");
-    }
-    else if (ret == -2)
-    {
-        printf("Wrong expression \n");
-    }
+    else
+        printf("%d\n", top);
+    printf("-------------------------ALL STACK-------------------------\n");
+    printStack(&myStack);
     
     return 0;
 }
@@ -89,7 +159,7 @@ int main(void)
 *********************************************************************************/
 void createEmptyStack(st_stack* stack)
 {
-    stack->top = 0;
+    stack->top = -1;
     for (int8_t i = 0 ; i < stackSize ; i++)
     {
         stack->array[i] = 0;
@@ -120,7 +190,8 @@ int8_t pop(st_stack* stack, uint8_t* data)
     int8_t errorStatus = C_OK;
     if(!isEmpty(stack))
     {
-        *data = stack->array[stack->top--];
+        stack->top -= 1;
+        *data = stack->array[stack->top];
     }
     else 
     {
@@ -139,8 +210,7 @@ int8_t printStack(st_stack* stack)
     {
         while(temp > -1)
         {
-            printf("%d", stack->array[temp]);
-            temp--;
+            printf("%d\n", stack->array[--temp]);
         }
     }
     else 
@@ -155,9 +225,10 @@ int8_t printStack(st_stack* stack)
 int8_t getStackTop(st_stack* stack, uint8_t *topData)
 {
     int8_t errorStatus = C_OK;
+    int8_t temp = stack->top;
     if(isEmpty(stack) == 0)
     {
-        *topData = stack->array[stack->top];
+        *topData = stack->array[--temp];
     }
     else 
     {
