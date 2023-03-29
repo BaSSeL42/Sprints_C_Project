@@ -2,16 +2,11 @@
 #include "STD_types.h"
 #include "LCS.h"
 
-// #define arrSize     10
+
 
  uint8_t size;
 
- /*
- 9, 0, 7, 5, 3, 8, -10, 4, 2, 1
- 9, 0, 7, 5, 3, 8, -10, 4, 2, 1, 6, 12
- 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
- 2, 8, 4, 10, 6, 20, 16, 12, 14, 16
- */
+
 int main(void)
 {
     uint8_t val;
