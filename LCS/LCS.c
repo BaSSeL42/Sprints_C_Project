@@ -52,7 +52,7 @@ void printArray(int32_t *array, uint8_t arraySize)
 int8_t lcsGetSize(int32_t *array, uint8_t arraySize, uint8_t *sizeofLCS)
 {
     int8_t errorStatus = C_OK;
-    int32_t max = 0 , count = 0, flag = 0;
+    int32_t max = 0 , count = 1, flag = 0;
     int32_t initVal;
 
 
